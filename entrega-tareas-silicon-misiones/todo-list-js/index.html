@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Tareas — TP Clase 13 (DOM)</title>
+  <style>
+    /* ===== Estilos base (ya hechos, no hace falta que los toques) ===== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #F1F2F2;
+      color: #20203A;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .app {
+      background: #fff;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(43, 41, 109, 0.12);
+      padding: 26px;
+    }
+
+    h1 {
+      color: #2B296D;
+      font-size: 22px;
+      margin: 0 0 4px;
+    }
+
+    .sub {
+      color: #6E6E80;
+      font-size: 13px;
+      margin: 0 0 20px;
+    }
+
+    .fila {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    #nuevaTarea {
+      flex: 1;
+      padding: 11px 12px;
+      border: 1.5px solid #CFD0DA;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    #nuevaTarea:focus {
+      outline: none;
+      border-color: #0E6689;
+    }
+
+    #agregar {
+      background: #0E6689;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0 18px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #agregar:hover {
+      background: #0b4f68;
+    }
+
+    #lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #lista li {
+      display: flex;
+      justify-content: space-between;
+      background: #F7F7FA;
+      border: 1px solid #E7E7EE;
+      border-radius: 8px;
+      padding: 11px 12px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* Clase para tachar una tarea hecha. La activás desde el JS con classList */
+    #lista li.hecha {
+      text-decoration: line-through;
+      color: #9A9AAB;
+      background: #EFEFF3;
+    }
+
+    .btn-eliminar {
+      background: #C0392B;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-eliminar:hover {
+      background: #962D22;
+    }
+
+    #contador {
+      color: #2B296D;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>Mi Lista de Tareas</h1>
+    <p class="sub">TP Clase 13 · El DOM</p>
+
+    <!-- input + botón para agregar -->
+    <div class="fila">
+      <input id="nuevaTarea" type="text" placeholder="Escribí una tarea..." />
+      <button id="agregar">Agregar</button>
+    </div>
+
+    <!-- acá se van a ir agregando las tareas (las crea el JS) -->
+    <ul id="lista"></ul>
+
+    <!-- contador de tareas -->
+    <p id="contador">Tareas: 0</p>
+  </div>
+
+  <script>
+    // ============================================================
+    //  TP CLASE 13 — LISTA DE TAREAS
+    //  Completá los TODO. Probá en el navegador y mirá la consola (F12).
+    // ============================================================
+
+    // 1) SELECCIONAR los elementos que vas a usar
+    const nuevaTarea = document.querySelector("#nuevaTarea");
+    const agregar = document.querySelector("#agregar");
+    const lista = document.querySelector("#lista");
+    const contador = document.querySelector("#contador");
+
+
+    // 2) Una función que actualiza el texto del contador
+    function actualizarContador() {
+      const tareasPendientes = lista.querySelectorAll("li:not(.hecha)"); // Obtengo solamente las tareas que no tienen la clase "hecha"
+
+      contador.textContent = `Tareas pendientes: ${tareasPendientes.length}`;
+    }
+
+
+    // 3) EVENTO: cuando se hace click en "Agregar", crear una tarea
+    function agregarTarea() {
+      let texto = nuevaTarea.value.trim(); // Obtengo el valor del input
+
+      if (texto === "") {
+        return;
+      }
+
+      // Crear un <li> con el texto y agregarlo a la lista
+      const tarea = document.createElement("li");
+      const textoTarea = document.createElement("span");
+      textoTarea.textContent = texto;
+      tarea.appendChild(textoTarea);
+
+
+      // Marcar la tarea como hecha al hacer click en el <li>
+      tarea.addEventListener("click", function () {
+        tarea.classList.toggle("hecha");
+        actualizarContador();
+      });
+
+
+      // Crear el botonsito de eliminar
+      const btnEliminar = document.createElement("button");
+      btnEliminar.textContent = "Eliminar";
+      btnEliminar.classList.add("btn-eliminar");
+
+      btnEliminar.addEventListener("click", function (e) {
+        tarea.remove();
+        actualizarContador();
+      });
+      // Agrego el btn de eliminar al elemento de tarea (li)
+      tarea.appendChild(btnEliminar);
+
+
+      // Agrego el <li> a la lista
+      lista.appendChild(tarea);
+
+
+      // Limpiar el input
+      nuevaTarea.value = "";
+      actualizarContador();
+    }
+
+
+    // Permitir agregar con la tecla Enter
+    nuevaTarea.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        agregarTarea();
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>
