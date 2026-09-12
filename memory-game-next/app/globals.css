@@ -1,0 +1,104 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colores */
+  --color-bg: #EFEFEF;                    
+  --color-surface: #FFFFFF;               
+  --color-surface-2: #F8FAFC;             
+  --color-border: rgb(226 232 240 / 0.8); 
+  --color-text: #1A1D20;                  
+  --color-text-muted: #64748B;            
+  --color-primary: #4F46E5;               
+  --color-primary-hover: #4338CA;         
+  --color-success: #10B981;               
+  --color-success-hover: #059669;         
+
+  /* Forma y profundidad (sombra flotante suave, sin neón) */
+  --spacing-unit: 1rem;
+  --border-radius: 1.5rem;                                        
+  --shadow-soft: 0 20px 40px -15px rgb(0 0 0 / 0.07);            
+  --shadow-ambient: 0 24px 48px -15px rgb(0 0 0 / 0.12), 0 8px 24px rgb(0 0 0 / 0.06); 
+
+  /* Animación de volteo de la tarjeta */
+  --card-flip-duration: 0.6s;
+  --card-flip-backface: hidden;
+  --card-flip-transform: perspective(1000px) rotateY(180deg);
+  --card-flip-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-bg);
+}
+
+/* Keyframes de la animación de volteo */
+@keyframes flipEnter {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(180deg); }
+}
+@keyframes flipExit {
+  from { transform: rotateY(180deg); }
+  to { transform: rotateY(0deg); }
+}
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgb(16 185 129 / 0.15); }
+  50% { box-shadow: 0 4px 24px rgb(16 185 129 / 0.28); }
+}
+
+/* Clases de volteo*/
+.flip-enter {
+  animation: flipEnter var(--card-flip-duration) ease forwards;
+}
+.flip-enter-active {
+  transform: rotateY(180deg);
+}
+.flip-exit {
+  animation: flipExit var(--card-flip-duration) ease forwards;
+}
+.flip-exit-active {
+  transform: rotateY(0deg);
+}
+
+/* Volteo 3D de la card*/
+.card-3d {
+  perspective: 1000px;
+}
+.card-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform var(--card-flip-duration) var(--card-flip-ease);
+}
+.card-3d-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-face-front {
+  transform: rotateY(180deg);
+}
+
+/* Pareja encontrada */
+.card-matched {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Animación de aparición del modal de victoria */
+.victory-card {
+  animation: popIn 0.3s var(--card-flip-ease) forwards;
+}
