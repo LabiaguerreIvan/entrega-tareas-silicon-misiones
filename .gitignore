@@ -1,0 +1,16 @@
+# Configuración y logs de agentes de IA / SDD
+.atl/
+opencode.json
+openspec/
+sdd/
+result_contract.json
+verify-report.md
+
+# Node y Next.js
+node_modules/
+.next/
+*.log
+
+# Otros proyectos en la misma rama
+password-generator-react/
+todo-list-js/

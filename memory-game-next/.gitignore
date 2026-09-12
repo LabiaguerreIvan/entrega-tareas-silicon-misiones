@@ -1,0 +1,25 @@
+# See https://github.com/github/gitignore/blob/main/node.gitignore
+node_modules/
+
+# See https://github.com/github/gitignore/blob/main/Next.js.gitignore
+.next/
+
+# Dependency Lock Files
+yarn.lock
+p-lock.lock
+
+# Environment variables
+.env*
+
+# Production
+*.local
+
+# Debug
+*.log
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Package lock
+package-lock.json
