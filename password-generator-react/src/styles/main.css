@@ -3,10 +3,10 @@
   --color-primary-hover: #205cdd;
   --color-error: #ef4444;
   --color-success: #10b981;
-  --color-very-weak: #f87171;
+  --color-very-weak: #fa5656;
   --color-weak: #fbbf24;
   --color-medium: #fcd34d;
-  --color-strong: #34d399;
+  --color-strong: #2fbe8a;
   --color-background: #f8fafc;
   --color-card: #ffffff;
   --color-text: #1e293b;
@@ -39,9 +39,14 @@
 
 .password-generator h1 {
   text-align: center;
-  margin-bottom: 2rem;
   color: var(--color-text);
   font-size: 1.75rem;
+}
+
+.password-generator h4 {
+  text-align: center;
+  color: var(--color-text-muted);
+  font: italic 1rem system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 
@@ -180,9 +185,11 @@
 }
 
 .copied-feedback {
+  display: flex;
+  justify-content: center;
   color: var(--color-success);
   font-size: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   text-align: center;
   animation: fadeIn 0.3s ease-out;
 }
@@ -337,6 +344,11 @@
 
   .password-generator h1 {
     font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .password-generator h4 {
+    font-size: 0.70rem;
     margin-bottom: 1.5rem;
   }
 
