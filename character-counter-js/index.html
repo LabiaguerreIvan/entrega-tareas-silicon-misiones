@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Caracteres</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="contenedor">
+    <header class="cabecera">
+      <div class="title-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2563EB"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-dashed-text">
+          <path d="M14 21h1" />
+          <path d="M14 3h1" />
+          <path d="M19 3a2 2 0 0 1 2 2" />
+          <path d="M21 14v1" />
+          <path d="M21 19a2 2 0 0 1-2 2" />
+          <path d="M21 9v1" />
+          <path d="M3 14v1" />
+          <path d="M3 9v1" />
+          <path d="M5 21a2 2 0 0 1-2-2" />
+          <path d="M5 3a2 2 0 0 0-2 2" />
+          <path d="M7 12h10" />
+          <path d="M7 16h6" />
+          <path d="M7 8h8" />
+          <path d="M9 21h1" />
+          <path d="M9 3h1" />
+        </svg>
+        <h1 class="cabecera__titulo">Contador de Caracteres</h1>
+      </div>
+      <p class="cabecera__descripcion">
+        Escribe o pega tu texto y mira las estadísticas en vivo. Límite: 280 caracteres.
+      </p>
+    </header>
+
+    <div class="layout">
+      <!-- Panel izquierdo: entrada de texto -->
+      <section class="panel" aria-labelledby="panel-texto">
+        <header class="panel__cabecera">
+          <h2 id="panel-texto" class="panel__titulo">TU TEXTO</h2>
+          <button id="limpiar" class="boton" type="button">Limpiar</button>
+        </header>
+        <textarea id="texto" class="texto" placeholder="Escribe o pega tu texto aquí..."
+          aria-label="Tu texto"></textarea>
+      </section>
+
+      <!-- Panel derecho: estadísticas -->
+      <section class="panel" aria-labelledby="panel-estadisticas">
+        <header class="panel__cabecera">
+          <h2 id="panel-estadisticas" class="panel__titulo">ESTADÍSTICAS</h2>
+        </header>
+
+        <div class="metricas-principales">
+          <div class="metrica">
+            <span class="metrica__etiqueta">Palabras</span>
+            <strong id="palabras" class="metrica__valor">0</strong>
+          </div>
+          <div class="metrica">
+            <span class="metrica__etiqueta">Caracteres</span>
+            <strong id="caracteres" class="metrica__valor">0</strong>
+          </div>
+        </div>
+
+        <ul class="metricas-secundarias">
+          <li class="metrica-secundaria">
+            <span class="metrica-secundaria__etiqueta">Sin espacios</span>
+            <strong id="sin-espacios" class="metrica-secundaria__valor">0</strong>
+          </li>
+          <li class="metrica-secundaria">
+            <span class="metrica-secundaria__etiqueta">Restantes</span>
+            <p class="metrica-secundaria__grupo">
+              <strong id="restantes" class="metrica-secundaria__valor">280</strong>
+              <span class="metrica-secundaria__total">/ 280</span>
+            </p>
+          </li>
+        </ul>
+
+        <div class="progreso__pista" role="progressbar" aria-label="Porcentaje del límite utilizado" aria-valuemin="0"
+          aria-valuemax="100" aria-valuenow="0">
+          <div id="barra-progreso" class="progreso__relleno"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
