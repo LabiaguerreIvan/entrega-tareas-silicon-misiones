@@ -8,7 +8,7 @@ Repositorio principal de proyectos desarrollados durante el cursado de **Desarro
 
 | Proyecto | Descripción | Tecnologías | Demo |
 | :--- | :--- | :--- | :--- |
-| **Character Counter** | Contador de palabras y caracteres en tiempo real con alertas de límite. | Vanilla JS, HTML5, CSS3 | [Ver Demo](character-counter-weld.vercel.app) |
+| **Character Counter** | Contador de palabras y caracteres en tiempo real con alertas de límite. | Vanilla JS, HTML5, CSS3 | [Ver Demo](https://character-counter-weld.vercel.app) |
 | **Password Generator** | Generador seguro de contraseñas con medidor de fortaleza cualitativo. | React, Vite, CSS | [Ver Demo](https://password-generator-dfiucnsop-labiaguerre.vercel.app) |
 | **Memory Game** | Juego de memoria e interacción dinámica de cartas. | Next.js, React, Tailwind CSS | [Ver Demo](https://memory-game-iota-snowy.vercel.app) |
 
